@@ -1,0 +1,31 @@
+<!-- src/app/user-list/user-list.component.html -->
+<div class="user-list">
+    <h2>User Management</h2>
+    <button (click)="selectUser({ id: 0, name: '', email: '' })">Add New User</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td>{{ user.id }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                    <button (click)="selectUser(user)">Edit</button>
+                    <button (click)="deleteUser(user.id)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- User Form Modal -->
+<app-user-form *ngIf="selectedUser" [user]="selectedUser" (save)="onSave($event)" (cancel)="onCancel()">
+</app-user-form>
